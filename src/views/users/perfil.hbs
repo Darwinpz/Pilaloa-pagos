@@ -1,0 +1,175 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col">
+
+            {{#if coincide}}
+
+            <a type="button" href="/principal" class="btn btn-success btn-lg mt-3"><i class="fas fa-chevron-left"></i>
+                Volver</a>
+
+            {{else}}
+
+            {{#if isclient}}
+            <a type="button" href="/clientes" class="btn btn-success btn-lg mt-3"><i class="fas fa-chevron-left"></i>
+                Volver</a>
+            {{else}}
+            <a type="button" href="/usuarios" class="btn btn-success btn-lg mt-3"><i class="fas fa-chevron-left"></i>
+                Volver</a>
+            {{/if}}
+
+            {{/if}}
+
+        </div>
+
+
+    </div>
+
+    <div class="row mt-3">
+
+        <div class="col">
+
+            <div class="card mb-2" style="box-shadow: 0 2px 10px rgba(0,0,0,.075);">
+
+                <h4 class="card-header"><b>Perfil</b></h4>
+
+                <div class="card-body">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-md-4 mb-2 text-center">
+
+                            <img src="/img/perfil.png" class="w-50 mx-auto">
+
+                        </div>
+
+                        <div class="col-md-8">
+
+                            <form class="row g-3" method="POST">
+
+                                <div class="col-md-4">
+                                    <label class="form-label fs-5"><b>* Cédula:</b></label>
+                                    <input type="text" class="form-control fs-5" name="cedula"
+                                        placeholder="Cédula de Identidad" value="{{usuario.cedula}}" required>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label fs-5"><b>* Tipo:</b></label>
+                                    <label class="form-control fs-5">{{usuario.tipo}}</label>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label fs-5"><b>* Usuario</b></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <input type="text" class="form-control fs-5" name="username"
+                                            placeholder="Nombre de Usuario" value="{{usuario.username}}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fs-5"><b>* Nombres:</b></label>
+                                    <input type="text" class="form-control fs-5" name="nombres"
+                                        placeholder="Nombres Completos" value="{{usuario.nombres}}" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fs-5"><b>* Apellidos:</b></label>
+                                    <input type="text" class="form-control fs-5" name="apellidos"
+                                        placeholder="Apellidos Completos" value="{{usuario.apellidos}}" required>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label fs-5"><b>* Correo:</b></label>
+                                    <input type="email" class="form-control fs-5" name="correo"
+                                        placeholder="Correo Electrónico" value="{{usuario.correo}}" required>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label fs-5"><b>* Telefono:</b></label>
+                                    <input type="text" class="form-control fs-5" name="telefono"
+                                        placeholder="Celular o Convencional" value="{{usuario.telefono}}" required>
+                                </div>
+                                
+                                {{#if isclient}}
+
+                                    <div class="col-md-12">
+                                        <label class="form-label fs-5"><b>Dirección:</b></label>
+                                        <input type="text" class="form-control fs-5" name="direccion"
+                                            placeholder="Dirección de vivienda" value="{{usuario.direccion}}">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label fs-5"><b>Observación:</b></label>
+                                        <textarea type="text" class="form-control fs-5" name="observacion"
+                                            placeholder="Observación del Cliente">{{usuario.observacion}}</textarea>
+                                    </div>
+
+                                {{/if}}
+
+                                <div class="col-12 text-end">
+                                    
+                                    <button class="btn btn-success btn-block fs-4 mb-2" type="submit"><i
+                                            class="fas fa-edit"></i> Guardar Cambios</button>
+
+                                    {{#if isclient}}
+
+                                    <a class="btn btn-primary btn-block fs-4 mb-2" href="/deudas/{{usuario._id}}"><i
+                                            class="fas fa-eye"></i> Ver Deudas</a>
+                                    
+                                    {{else}}
+
+                                    <button type="button" class="btn btn-primary fs-4 mb-2" data-bs-toggle="modal"
+                                        data-bs-target="#modal_clave"><i class="fas fa-key"></i> Cambiar Clave</button>
+                                     
+                                    {{/if}}
+                                            
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+    <div class="modal fade" id="modal_clave" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Cambiar Clave</strong></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="row g-3" method="POST" action="/updateclave">
+
+                        <input type="text" class="form-control fs-5 " style="display: none;" name="id" value="{{usuario._id}}"></input>
+
+                        <div class="col-md-12">
+                            <label class="form-label fs-5"><b>* Nueva Clave:</b></label>
+                            <input type="text" class="form-control fs-5 " name="clave"
+                                placeholder="Nueva Clave de Acceso"></input>
+                        </div>
+
+                        <button class="btn btn-success btn-block fs-4 mb-2" type="submit"><i class="fas fa-key"></i>
+                            Actualizar Clave</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>

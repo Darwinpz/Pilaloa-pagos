@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="row align-items-center justify-content-center vh-100">
+
+        <div class="col-md-7 text-center">
+
+            <img src="/img/pagos.png" class="w-50">
+            <h3>Sistema Informático para la Gestión de Pagos de Clientes</h3>
+
+        </div>
+
+        <div class="col-md-5">
+
+            <div class="card p-3" style="box-shadow: 0 2px 10px rgba(0,0,0,.075);">
+
+                <h4 class="text-center"><b>Ingreso al Sistema</b></h4>
+
+                <div class="card-body">
+
+                    <form class="row g-3" method="POST">
+
+                        <div class="col-md-12">
+                            <input type="text" class="form-control fs-5" name="identificacion" placeholder="Cédula o Identificación" value="{{usuario.identificacion}}" required>
+                        </div>
+                        <div class="col-md-12">
+
+                            <input type="password" class="form-control fs-5" name="clave" placeholder="Clave de seguridad" value="{{usuario.clave}}" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-block fs-4" type="submit">Iniciar Sesión</button>
+                        </div>
+
+                        <!--a href="#" class="text-end" style="text-decoration: none;">Olvidé la Clave de Seguridad</a-->
+
+                        <hr>
+                        <!--a type="button" href="/registro" class="btn btn-success btn-lg mt-3">Crear Nueva Cuenta</a-->
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <p class="pt-3 text-center"><b>Autor</b> Darwin Pilaloa Zea</p>
+
+        </div>
+
+    </div>
+
+</div>
